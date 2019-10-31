@@ -1,18 +1,17 @@
 #include <Arduino.h>
-#include <Controller.h>
+#include <Drone.h>
 
-
-Controller::Controller(){
+Drone::Drone(){
     this->x = 50;
     this->y = 40;
     this->pinX = 1;
     this->pinY = 2;
 }
 
-void Controller::connect(){
+void Drone::connect(){
     this->x = 2;
 }
 
-void Controller::myloop(){
+void Drone::myloop(){
     
 }

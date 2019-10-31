@@ -1,6 +1,6 @@
-class Controller {
+class Drone {
     public:
-        Controller ();
+        Drone ();
         void connect();
         void myloop();
     private:

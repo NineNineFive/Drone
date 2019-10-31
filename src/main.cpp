@@ -1,17 +1,13 @@
 #include <Arduino.h>
 #include <Controller.h>
+#include <Drone.h>
 
-
-//LED led(27);
-
-Controller controller();
+Controller controller;
+Drone drone;
 
 void setup() {
-
-    //Serial.begin(9600);
-    //led.setup();
+    controller.connect();
 }
 
 void loop() {
-  //led.loop();
 }
