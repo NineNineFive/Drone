@@ -1,11 +1,8 @@
 class Drone {
     public:
         Drone ();
-        void connect();
-        void myloop();
+        void setup();
+        void loop();
     private:
-        int x;
-        int y;
-        int pinX;
-        int pinY;
+
 };

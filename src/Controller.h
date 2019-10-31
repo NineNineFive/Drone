@@ -1,8 +1,8 @@
 class Controller {
     public:
         Controller ();
-        void connect();
-        void myloop();
+        void setup();
+        void loop();
     private:
         int x;
         int y;

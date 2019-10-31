@@ -6,8 +6,11 @@ Controller controller;
 Drone drone;
 
 void setup() {
-    controller.connect();
+    controller.setup();
+    drone.setup();
 }
 
 void loop() {
+    controller.loop();
+    drone.loop();
 }
