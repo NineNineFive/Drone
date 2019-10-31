@@ -4,5 +4,6 @@ class Drone {
         void setup();
         void loop();
     private:
+        //MyWIFI wifi;
 
 };

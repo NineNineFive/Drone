@@ -9,10 +9,10 @@ Controller::Controller(){
     this->pinY = 2;
 }
 
-void Controller::connect(){
+void Controller::setup(){
     this->x = 2;
 }
 
-void Controller::myloop(){
+void Controller::loop(){
     
 }
