@@ -4,7 +4,7 @@
 
 
 using namespace std;
-    //Timer timer(1);
+    Timer timer(1);
     int pin;
 
     LED::LED(int pin){

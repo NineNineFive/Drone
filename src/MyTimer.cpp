@@ -1,18 +1,18 @@
 #include <Arduino.h>
-#include <Timer.h>
+#include <MyTimer.h>
 
 using namespace std;
-/*
+
 long timer;
 long timeSinceStart;
 long frame;
 boolean toggle;
 
-Timer::Timer(long timer){
-    Timer::timer = timer;
+MyTimer::MyTimer(long timer){
+    MyTimer::timer = timer;
 }
 
-void Timer::loop(){
+bool loop(){
     frame = millis() - timeSinceStart;
     timeSinceStart = millis();
 
@@ -32,4 +32,3 @@ void Timer::loop(){
     }
 
 }
-*/

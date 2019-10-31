@@ -1,14 +1,12 @@
 #include <string>
 using namespace std;
-/*
-class Timer {
+
+class MyTimer {
     public:
         long timer;
         long timerSinceStart;
         long frame;
-        Timer(long seconds); 
-        void loop();
+        MyTimer(long seconds); 
+        bool loop();
     private:
-        
 };
-*/
