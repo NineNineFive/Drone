@@ -7,6 +7,7 @@ Drone::Drone(String ssid, String password)
 {
     this->ssid = ssid;
     this->password = password; 
+}
 
 void Drone::connect()
 {
