@@ -12,9 +12,7 @@ Timer::Timer(long timer){
     Timer::timer = timer;
 }
 
-boolean loop(){
-
-
+void Timer::loop(){
     frame = millis() - timeSinceStart;
     timeSinceStart = millis();
 
