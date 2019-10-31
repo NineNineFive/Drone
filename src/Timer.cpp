@@ -2,7 +2,7 @@
 #include <Timer.h>
 
 using namespace std;
-
+/*
 long timer;
 long timeSinceStart;
 long frame;
@@ -32,3 +32,4 @@ void Timer::loop(){
     }
 
 }
+*/

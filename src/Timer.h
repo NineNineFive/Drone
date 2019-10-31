@@ -1,6 +1,6 @@
 #include <string>
 using namespace std;
-
+/*
 class Timer {
     public:
         long timer;
@@ -11,3 +11,4 @@ class Timer {
     private:
         
 };
+*/
