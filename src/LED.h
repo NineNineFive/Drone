@@ -1,12 +1,10 @@
 #include <string>
-#include <MyTimer.h>
 using namespace std;
 
 class LED
 {
     public:
         int pin;
-        MyTimer timer;
         string message;
         //Timer timer;
         LED(int pin); 

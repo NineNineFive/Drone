@@ -1,10 +1,7 @@
 #include <Arduino.h>
 #include <LED.h>
-#include <MyTimer.h>
-
 
 using namespace std;
-    MyTimer timer(1);
     int pin;
 
     LED::LED(int pin){
