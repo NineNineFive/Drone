@@ -4,5 +4,5 @@ class Potentiometer {
         void setup();
         void loop();
     private:
-        const int POT_PIN;
+    int POT_PIN;
 };

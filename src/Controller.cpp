@@ -1,17 +1,15 @@
 #include <Arduino.h>
 #include <Controller.h>
+#include <Controller/Potentiometer.h>
+
 
 Controller::Controller(){
-    this->x = 50;
-    this->y = 40;
-    this->pinX = 1;
-    this->pinY = 2;
 }
 
 void Controller::setup(){
-    this->x = 2;
+    Potentiometer.setup; 
 }
 
 void Controller::loop(){
-    
+    Potentiometer.loop;
 }

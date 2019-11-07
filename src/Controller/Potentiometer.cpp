@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <Potentiometer.h>
+#include <Controller/Potentiometer.h>
 
 Potentiometer::Potentiometer(){
     this->POT_PIN = 27;
