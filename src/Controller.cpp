@@ -2,14 +2,15 @@
 #include <Controller.h>
 #include <Controller/Potentiometer.h>
 
+Potentiometer potentiometer;
 
 Controller::Controller(){
 }
 
 void Controller::setup(){
-    Potentiometer.setup; 
+    potentiometer.setup(); 
 }
 
 void Controller::loop(){
-    Potentiometer.loop;
+    potentiometer.loop();
 }
