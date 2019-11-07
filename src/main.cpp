@@ -6,7 +6,7 @@ Controller controller;
 Drone drone;
 
 void setup() {
-    Serial.begin(115200);
+    Serial.begin(9600);
     controller.setup();
     drone.setup();
 }

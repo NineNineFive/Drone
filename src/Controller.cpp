@@ -13,4 +13,5 @@ void Controller::setup(){
 
 void Controller::loop(){
     potentiometer.loop();
+    //potentiometer.print();
 }
