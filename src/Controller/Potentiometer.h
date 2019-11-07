@@ -5,6 +5,6 @@ class Potentiometer {
         void loop();
         void print();
     private:
-    int POT_PIN;
-    int freq;
+        int potentiometerPin = 27;
+        int frequency;
 };
