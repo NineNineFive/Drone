@@ -2,7 +2,7 @@
 #include <Potentiometer.h>
 
 Potentiometer::Potentiometer(){
-    this->POT_PIN = 27
+    this->POT_PIN = 27;
 }
 
 void Potentiometer::setup(){
@@ -11,6 +11,6 @@ void Potentiometer::setup(){
 
 void Potentiometer::loop(){
     int potValue= analogRead(POT_PIN);
-    freq = map(potValue,0,4095, 0,7000 ); 
+    int freq = map(potValue,0,4095, 0,7000 ); 
     Serial.println(freq);
 }

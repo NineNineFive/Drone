@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include <Controller.h>
 
-
 Controller::Controller(){
     this->x = 50;
     this->y = 40;
