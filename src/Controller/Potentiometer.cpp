@@ -2,7 +2,6 @@
 #include <Controller/Potentiometer.h>
 
 Potentiometer::Potentiometer(){
-
 }
 
 void Potentiometer::setup(){
@@ -17,4 +16,3 @@ void Potentiometer::loop(){
 void Potentiometer::print(){
     Serial.println(frequency);
 }
-
