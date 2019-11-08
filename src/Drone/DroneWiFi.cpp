@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <Drone/MyWIFI.h>
+#include <Drone/DroneWiFi.h>
 #include <AsyncUDP.h>
 #include <WiFiUDP.h>
 #include <WiFi.h>
@@ -9,20 +9,20 @@
     AsyncUDP udp;
     WiFiUDP udpSender;
 
-    const static int udpPort = 1995;
+    //const static int udpPort = 1995;
 
-    MyWIFI::MyWIFI(){    
+    DroneWiFi::DroneWiFi(){    
         this->ssid = "flexlab2";
         this->password = "flexiwifi";
     }
 
-    void MyWIFI::sendMessage(String ip, int port, String message){
+    void DroneWiFi::sendMessage(String ip, int port, String message){
         udpSender.beginPacket(ip.c_str(), port);
         udpSender.printf(message.c_str());
         udpSender.endPacket();  
     }
 
-    void MyWIFI::setup() {
+    void DroneWiFi::setup() {
         Serial.begin(9600);
         WiFi.mode(WIFI_STA);
         WiFi.begin(ssid, password);
@@ -60,7 +60,7 @@
         }
     }
 
-    void MyWIFI::loop()
+    void DroneWiFi::loop()
     {
         delay(5000);
         //Send broadcast

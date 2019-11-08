@@ -4,9 +4,9 @@
 #include <string.h>
 #include <WiFi.h>
 
-class MyWIFI {
+class DroneWiFi {
     public:
-        MyWIFI();
+        DroneWiFi();
         AsyncUDP udp;
         WiFiUDP udpSender;
         void sendMessage(String ip, int port, String message);
