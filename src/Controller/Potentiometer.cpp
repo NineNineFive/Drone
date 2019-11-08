@@ -10,9 +10,9 @@ void Potentiometer::setup(){
 
 void Potentiometer::loop(){
     int potValue= analogRead(potentiometerPin);
-    frequency = map(potValue,0,4095, 0,7000 ); 
+    potentiometerValue = map(potValue,0,4095, 0,7000 ); 
 }
 
 void Potentiometer::print(){
-    Serial.println(frequency);
+    Serial.println(potentiometerValue);
 }

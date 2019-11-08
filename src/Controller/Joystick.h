@@ -14,5 +14,5 @@ class Joystick{
         int xVal;
         int yVal;
         int swVal;
-        String output;
+        String joystickValue;
 };

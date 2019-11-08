@@ -6,5 +6,5 @@ class Potentiometer {
         void print();
     private:
         const int potentiometerPin = 27;
-        int frequency;
+        int potentiometerValue;
 };
