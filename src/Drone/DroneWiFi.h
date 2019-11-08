@@ -9,11 +9,12 @@ class DroneWiFi {
         DroneWiFi();
         AsyncUDP udp;
         WiFiUDP udpSender;
-        void sendMessage(String ip, int port, String message);
         void setup();
         void loop();
+        static const int udpPort = 1995;
     private:
-        const char * ssid;
-        const char * password;
-        static const int udpPort;
+        const char * ssid = "995";
+        const char * password = "idaernice";
+        //const char * ssid = "flexlab2";
+        //const char * password = "flexiwifi";
 };

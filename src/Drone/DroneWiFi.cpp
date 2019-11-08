@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include <Drone/DroneWiFi.h>
 #include <AsyncUDP.h>
-#include <WiFiUDP.h>
 #include <WiFi.h>
 #include <string.h>
 
@@ -9,21 +8,19 @@
     AsyncUDP udp;
     WiFiUDP udpSender;
 
-    //const static int udpPort = 1995;
 
-    DroneWiFi::DroneWiFi(){    
-        this->ssid = "flexlab2";
-        this->password = "flexiwifi";
-    }
-
-    void DroneWiFi::sendMessage(String ip, int port, String message){
+    void sendMessage(String ip, int port, String message){
         udpSender.beginPacket(ip.c_str(), port);
         udpSender.printf(message.c_str());
         udpSender.endPacket();  
     }
 
+    DroneWiFi::DroneWiFi(){    
+    }
+
     void DroneWiFi::setup() {
-        Serial.begin(9600);
+        Serial.println("Drone Setup");
+
         WiFi.mode(WIFI_STA);
         WiFi.begin(ssid, password);
         if (WiFi.waitForConnectResult() != WL_CONNECTED) {
@@ -54,8 +51,10 @@
                 //reply to the client
                 packet.printf("Got %u bytes of data", packet.length());
 
+                Serial.println(udpPort);
+
                 //send reply
-                //sendMessage(packet.remoteIP().toString(), udpPort, "reply from esp32");
+                sendMessage(packet.remoteIP().toString(), udpPort, "reply from esp32");
             });
         }
     }
