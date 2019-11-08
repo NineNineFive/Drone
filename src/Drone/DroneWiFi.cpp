@@ -1,72 +1,70 @@
 #include <Arduino.h>
 #include <Drone/DroneWiFi.h>
-#include <AsyncUDP.h>
-#include <WiFi.h>
 #include <string.h>
+#include <WiFi.h>
+#include <AsyncUDP.h>
 
+String ssid;
+String password;
 
-    AsyncUDP udp;
-    WiFiUDP udpSender;
+DroneWiFi::DroneWiFi(String ssid, String password){
+    this->ssid = ssid;
+    this->password = password; 
+}
 
-
-    void sendMessage(String ip, int port, String message){
-        udpSender.beginPacket(ip.c_str(), port);
-        udpSender.printf(message.c_str());
-        udpSender.endPacket();  
-    }
-
-    DroneWiFi::DroneWiFi(){    
-    }
-
-    void DroneWiFi::setup() {
-        Serial.println("Drone Setup");
-
-        WiFi.mode(WIFI_STA);
-        WiFi.begin(ssid, password);
-        if (WiFi.waitForConnectResult() != WL_CONNECTED) {
-            Serial.println("WiFi Failed");
-            while(1) {
-                delay(1000);
-            }
-        }
-        if(udp.listen(udpPort)) {
-            Serial.print("UDP Listening on IP: ");
-            Serial.println(WiFi.localIP());
-            udp.onPacket([](AsyncUDPPacket packet) {
-                Serial.print("UDP Packet Type: ");
-                Serial.print(packet.isBroadcast()?"Broadcast":packet.isMulticast()?"Multicast":"Unicast");
-                Serial.print(", From: ");
-                Serial.print(packet.remoteIP());
-                Serial.print(":");
-                Serial.print(packet.remotePort());
-                Serial.print(", To: ");
-                Serial.print(packet.localIP());
-                Serial.print(":");
-                Serial.print(packet.localPort());
-                Serial.print(", Length: ");
-                Serial.print(packet.length());
-                Serial.print(", Data: ");
-                Serial.write(packet.data(), packet.length());
-                Serial.println();
-                //reply to the client
-                packet.printf("Got %u bytes of data", packet.length());
-
-                Serial.println(udpPort);
-
-                //send reply
-                sendMessage(packet.remoteIP().toString(), udpPort, "reply from esp32");
-            });
+void DroneWiFi::connect(){
+    Serial.println("drone begin");
+    //Serial.begin(9600);
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(this->ssid.c_str(), this->password.c_str());
+    if (WiFi.waitForConnectResult() != WL_CONNECTED) {
+        Serial.println("WiFi Failed");
+        while(1) {
+            delay(1000);
         }
     }
+    if(udp.listen(udpPort)) {
+        this->myIp = WiFi.localIP().toString();
+        Serial.print("UDP Listening on IP: ");
+        Serial.println(WiFi.localIP());
+      
+        udp.onPacket([this](AsyncUDPPacket packet) -> void {
+            // make a string from the data
+            String s((char*)packet.data());
+            s = s.substring(0, packet.length()); 
+            s.trim();
+            // send string to method
+            this->commandResponse(s);
+        });
+    }
+}
 
-    void DroneWiFi::loop()
-    {
-        delay(5000);
-        //Send broadcast
-        udp.broadcast("Hej Ebbe!!!!! DET MIG LAARS");
+void DroneWiFi::sendCommand(String command) {
+    udpSender.beginPacket(this->droneIp.c_str(), udpPort);
+    udpSender.printf(command.c_str());
+    udpSender.endPacket();    
+}
 
-        Serial.print("Giv Lars noget kage Please! ");
-        Serial.print(WiFi.localIP());
-        Serial.print(" on port: ");
-        Serial.println(udpPort);
-    } 
+void DroneWiFi::setIp(String ip) {
+    this->droneIp = ip;
+}
+        
+void DroneWiFi::commandResponse(String response) {
+    Serial.print("got following response: ");
+    Serial.println(response.c_str());
+    Serial.print("message length: ");
+    Serial.println(response.length());
+}
+/*
+void DroneWiFi::ButtonPressed(){
+    if (flying == false) {
+        this->flying = true;
+        Serial.println("takeoff");
+        this->sendCommand("takeoff");
+    } else {
+        Serial.println("land");
+        this->sendCommand("land");
+        this->flying = false;
+    }
+}
+*/
