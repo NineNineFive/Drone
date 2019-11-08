@@ -18,7 +18,7 @@ void Controller::setup(){
 }
 
 void Controller::loop(){
-    delay(500);3
+    delay(500);
     potentiometer.loop();
     joystick.loop();
     button.loop();

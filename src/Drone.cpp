@@ -1,16 +1,17 @@
 #include <Arduino.h>
 #include <Drone.h>
 #include <Drone/DroneWiFi.h>
+#include <string.h>
 
-DroneWiFi wifi;
+DroneWiFi wifi("995","idaernice");
 
 Drone::Drone(){
 }
 
 void Drone::setup(){
-    //wifi.setup();
+    wifi.connect();
 }
 
 void Drone::loop(){
-   // wifi.loop();
+   
 }
