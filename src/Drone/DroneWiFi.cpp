@@ -19,9 +19,9 @@ void DroneWiFi::connect(){
     WiFi.begin(this->ssid.c_str(), this->password.c_str());
     if (WiFi.waitForConnectResult() != WL_CONNECTED) {
         Serial.println("WiFi Failed");
-        while(1) {
-            delay(1000);
-        }
+        delay(2000);
+        Serial.println("Trying to connect WiFi again");
+        connect();
     }
     if(udp.listen(udpPort)) {
         this->myIp = WiFi.localIP().toString();
