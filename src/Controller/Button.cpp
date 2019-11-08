@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <Controller/Button.h>
+#include <string.h>
 
 Button::Button(){
 }
@@ -18,4 +19,8 @@ void Button::loop(){
 
 void Button::print(){
     Serial.println(buttonValue);
+}
+
+String Button::getButtonValue(){
+    return buttonValue;
 }

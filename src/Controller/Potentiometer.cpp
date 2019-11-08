@@ -9,10 +9,14 @@ void Potentiometer::setup(){
 }
 
 void Potentiometer::loop(){
-    int potValue= analogRead(potentiometerPin);
-    potentiometerValue = map(potValue,0,4095, 0,7000 ); 
+    int rawValue= analogRead(potentiometerPin);
+    value = map(rawValue,0,4095, 0,7000 ); 
 }
 
 void Potentiometer::print(){
-    Serial.println(potentiometerValue);
+    Serial.println(value);
+}
+
+int Potentiometer::getValue(){
+ return value;
 }

@@ -18,10 +18,11 @@ void Controller::setup(){
 }
 
 void Controller::loop(){
+    delay(500);3
     potentiometer.loop();
     joystick.loop();
     button.loop();
     potentiometer.print();
-    //joystick.print();
-    //button.print();
+    joystick.print();
+    button.print();
 }

@@ -21,3 +21,15 @@ void Joystick::loop(){
 void Joystick::print(){
     Serial.println(joystickValue);
 }
+
+int Joystick::getX(){
+    return xVal;
+}
+
+int Joystick::getY(){
+    return yVal;
+}
+
+int Joystick::getSW(){
+    return swVal;
+}

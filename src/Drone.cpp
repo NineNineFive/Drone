@@ -8,9 +8,9 @@ Drone::Drone(){
 }
 
 void Drone::setup(){
-    wifi.setup();
+    //wifi.setup();
 }
 
 void Drone::loop(){
-    wifi.loop();
+   // wifi.loop();
 }
