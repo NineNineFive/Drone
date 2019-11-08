@@ -1,6 +1,6 @@
 class Potentiometer {
     public:
-        Potentiometer ();
+        Potentiometer();
         void setup();
         void loop();
         void print();
