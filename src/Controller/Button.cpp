@@ -6,21 +6,26 @@ Button::Button(){
 }
 
 void Button::setup(){
-    pinMode(buttonPin,INPUT_PULLUP);
+    pinMode(buttonPin,INPUT);
 }
 
 void Button::loop(){
-    if(digitalRead(buttonPin)==LOW){
-        buttonValue = (String)"Pushed";
+    if(digitalRead(buttonPin)==HIGH){
+        value = (String)"Pushed";
+        toggle = !toggle;
     } else {
-        buttonValue = (String)"Not Pushed";
+        value = (String)"Not Pushed";
     }
 }
 
 void Button::print(){
-    Serial.println(buttonValue);
+    Serial.println(value);
 }
 
-String Button::getButtonValue(){
-    return buttonValue;
+String Button::getValue(){
+    return value;
+}
+
+boolean Button::getToggle(){
+    return toggle;
 }
