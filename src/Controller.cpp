@@ -8,7 +8,7 @@
 Potentiometer potentiometer;
 Joystick joystick;
 Button button;
-Drone drone("995","idaernice");
+Drone drone("LarsAliDrone","ebbevang");
 
 
 Controller::Controller(){
