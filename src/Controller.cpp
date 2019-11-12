@@ -31,7 +31,7 @@ void Controller::loop(){
     button.print();
 
 delay(3000);
-    if(button.getButtonValue()){
+    if(button.getValue()){
         drone.sendCommand("command");
     }
     Serial.println(drone.getCommandResponse());
