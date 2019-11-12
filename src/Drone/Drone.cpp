@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <Drone/DroneWiFi.h>
+#include <Drone/Drone.h>
 #include <string.h>
 #include <WiFi.h>
 #include <AsyncUDP.h>
@@ -7,12 +7,12 @@
 String ssid;
 String password;
 
-DroneWiFi::DroneWiFi(String ssid, String password){
+Drone::Drone(String ssid, String password){
     this->ssid = ssid;
     this->password = password; 
 }
 
-void DroneWiFi::connect(){
+void Drone::connect(){
     Serial.println("drone begin");
     //Serial.begin(9600);
     WiFi.mode(WIFI_STA);
@@ -39,24 +39,24 @@ void DroneWiFi::connect(){
     }
 }
 
-void DroneWiFi::sendCommand(String command) {
+void Drone::sendCommand(String command) {
     udpSender.beginPacket(this->droneIp.c_str(), udpPort);
     udpSender.printf(command.c_str());
     udpSender.endPacket();    
 }
 
-void DroneWiFi::setIp(String ip) {
+void Drone::setIp(String ip) {
     this->droneIp = ip;
 }
         
-void DroneWiFi::commandResponse(String response) {
+void Drone::commandResponse(String response) {
     Serial.print("got following response: ");
     Serial.println(response.c_str());
     Serial.print("message length: ");
     Serial.println(response.length());
 }
 /*
-void DroneWiFi::ButtonPressed(){
+void Drone::ButtonPressed(){
     if (flying == false) {
         this->flying = true;
         Serial.println("takeoff");

@@ -3,9 +3,9 @@
 #include "WiFi.h"
 #include "AsyncUDP.h"
 
-class DroneWiFi {
+class Drone {
     public:
-        DroneWiFi(String ssid , String password);
+        Drone(String ssid , String password);
         void connect();
         void sendCommand(String commmand);
         void setIp(String ip);
