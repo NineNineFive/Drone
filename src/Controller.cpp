@@ -3,10 +3,13 @@
 #include <Controller/Potentiometer.h>
 #include <Controller/Joystick.h>
 #include <Controller/Button.h>
+#include <Drone/Drone.h>
 
 Potentiometer potentiometer;
 Joystick joystick;
 Button button;
+Drone drone("995","idaernice");
+
 
 Controller::Controller(){
 }
@@ -15,6 +18,7 @@ void Controller::setup(){
     potentiometer.setup(); 
     joystick.setup();
     button.setup();    
+    drone.connect();
 }
 
 void Controller::loop(){
@@ -25,4 +29,10 @@ void Controller::loop(){
     potentiometer.print();
     joystick.print();
     button.print();
+
+delay(3000);
+    if(button.getButtonValue()){
+        drone.sendCommand("command");
+    }
+    Serial.println(drone.getCommandResponse());
 }
