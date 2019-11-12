@@ -30,7 +30,9 @@ void Controller::loop(){
     joystick.print();
     button.print();
 
+delay(3000);
     if(button.getButtonValue()){
         drone.sendCommand("command");
     }
+    Serial.println(drone.getCommandResponse());
 }

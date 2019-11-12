@@ -7,6 +7,8 @@
 String ssid;
 String password;
 
+String response = "";
+
 Drone::Drone(String ssid, String password){
     this->ssid = ssid;
     this->password = password; 
@@ -34,7 +36,7 @@ void Drone::connect(){
             s = s.substring(0, packet.length()); 
             s.trim();
             // send string to method
-            this->commandResponse(s);
+            this->response = s;
         });
     }
 }
@@ -49,11 +51,8 @@ void Drone::setIp(String ip) {
     this->droneIp = ip;
 }
         
-void Drone::commandResponse(String response) {
-    Serial.print("got following response: ");
-    Serial.println(response.c_str());
-    Serial.print("message length: ");
-    Serial.println(response.length());
+String Drone::getCommandResponse() {
+    return (String) (this->response.c_str());
 }
 /*
 void Drone::ButtonPressed(){

@@ -12,8 +12,9 @@ class Drone {
         bool connected;
         String myIp;
         void loop();
+        String getCommandResponse();
     private:
-        void commandResponse(String response);
+        String response;
         String ssid;
         String password;
         AsyncUDP udp;
