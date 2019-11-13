@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <string.h>
-#include "WiFi.h"
-#include "AsyncUDP.h"
+#include <WiFi.h>
+#include <AsyncUDP.h>
 
 class Drone {
     public:
@@ -12,15 +12,20 @@ class Drone {
         bool connected;
         String myIp;
         void loop();
-        String getCommandResponse();
+        void commandResponse(String response);
         void ButtonPressed();
+
+        WiFiUDP udpSender;
+        const int udpPort = 8889; 
+        AsyncUDP udp;
+
+        bool flying = false;
+
     private:
         String response;
         String ssid;
         String password;
-        AsyncUDP udp;
-        WiFiUDP udpSender;
-        const int udpPort = 8889; 
-        String droneIp = "192.168.10.1";
-        bool flying = false;
+        String droneIp = "192.168.10.1"; // drone
+        //String droneIp = "192.168.1.111"; // pc
+        
 };

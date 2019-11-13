@@ -14,31 +14,38 @@ Drone::Drone(String ssid, String password){
     this->password = password; 
 }
 
-void Drone::connect(){
+void Drone::connect()
+{
     Serial.println("drone begin");
     //Serial.begin(9600);
     WiFi.mode(WIFI_STA);
     WiFi.begin(this->ssid.c_str(), this->password.c_str());
     if (WiFi.waitForConnectResult() != WL_CONNECTED) {
         Serial.println("WiFi Failed");
-        delay(2000);
-        Serial.println("Trying to connect WiFi again");
-        connect();
+        while(1) {
+            delay(1000);
+        }
     }
     if(udp.listen(udpPort)) {
         this->myIp = WiFi.localIP().toString();
         Serial.print("UDP Listening on IP: ");
+        //Serial.println("localIP: "+WiFi.localIP());
         Serial.println(WiFi.localIP());
       
-        udp.onPacket([this](AsyncUDPPacket packet) -> void {
-            // make a string from the data
-            String s((char*)packet.data());
-            s = s.substring(0, packet.length()); 
-            s.trim();
-            // send string to method
-            this->response = s;
-            Serial.println(s);
-        });
+        Serial.println("onPacket");
+        
+        udp.onPacket(
+            [this](AsyncUDPPacket packet) -> void
+            {
+                // make a string from the data
+                String s((char*)packet.data());
+                s = s.substring(0, packet.length()); 
+                s.trim();
+                // send string to method
+                this->commandResponse(s);
+            }
+        );
+        this->sendCommand("command");
     }
 }
 
@@ -52,8 +59,12 @@ void Drone::setIp(String ip) {
     this->droneIp = ip;
 }
         
-String Drone::getCommandResponse() {
-    return this->response;
+void Drone::commandResponse(String response)
+{
+    Serial.print("got following response: ");
+    Serial.println(response.c_str());
+    Serial.print("message length: ");
+    Serial.println(response.length());
 }
 
 void Drone::ButtonPressed(){
