@@ -37,6 +37,7 @@ void Drone::connect(){
             s.trim();
             // send string to method
             this->response = s;
+            Serial.println(s);
         });
     }
 }
@@ -52,9 +53,9 @@ void Drone::setIp(String ip) {
 }
         
 String Drone::getCommandResponse() {
-    return (String) (this->response.c_str());
+    return this->response;
 }
-/*
+
 void Drone::ButtonPressed(){
     if (flying == false) {
         this->flying = true;
@@ -66,4 +67,3 @@ void Drone::ButtonPressed(){
         this->flying = false;
     }
 }
-*/

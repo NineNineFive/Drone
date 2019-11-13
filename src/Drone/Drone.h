@@ -13,6 +13,7 @@ class Drone {
         String myIp;
         void loop();
         String getCommandResponse();
+        void ButtonPressed();
     private:
         String response;
         String ssid;
@@ -20,6 +21,6 @@ class Drone {
         AsyncUDP udp;
         WiFiUDP udpSender;
         const int udpPort = 8889; 
-        String droneIp = "192.168.1.146";
+        String droneIp = "192.168.10.1";
         bool flying = false;
 };

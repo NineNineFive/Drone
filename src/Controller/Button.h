@@ -13,4 +13,5 @@ class Button{
         const int buttonPin = 23;
         String value;
         boolean toggle;
+        boolean lastToggle;
 };

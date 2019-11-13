@@ -22,17 +22,20 @@ void Controller::setup(){
 }
 
 void Controller::loop(){
-    delay(500);
+    delay(5000);
     potentiometer.loop();
     joystick.loop();
     button.loop();
-    potentiometer.print();
-    joystick.print();
-    button.print();
+    //potentiometer.print();
+    //joystick.print();
+    //button.print();
 
-delay(3000);
-    if(button.getValue()){
-        drone.sendCommand("command");
+    if(button.getToggle()==true){
+        drone.sendCommand("Command");
+        Serial.println(drone.getCommandResponse());
+    } else {
+        Serial.println("false");
+        //Serial.println("false");
     }
-    Serial.println(drone.getCommandResponse());
+
 }
