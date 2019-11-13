@@ -34,7 +34,6 @@ void Controller::loop(){
     potentiometer.loop();
     joystick.loop();
     button.loop();
-    //potentiometer.print();
     //joystick.print();
     //button.print();
     
@@ -53,5 +52,19 @@ void Controller::loop(){
             Serial.println("false");
             drone.sendCommand("land");
         }
+
+    int value = potentiometer.getValue();
+
+
+        Serial.println(value);
+    if(value>120){
+        String command = "up ";
+        command += 200;
+        drone.sendCommand(command);
+    } else if(value<80){
+        String command = "down ";
+        command += 20;
+        drone.sendCommand(command);
+    }
     }
 }

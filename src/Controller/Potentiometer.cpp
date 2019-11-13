@@ -10,7 +10,7 @@ void Potentiometer::setup(){
 
 void Potentiometer::loop(){
     int rawValue= analogRead(potentiometerPin);
-    value = map(rawValue,0,4095, 0,7000 ); 
+    value = map(rawValue,0,4095, 20,200); 
 }
 
 void Potentiometer::print(){

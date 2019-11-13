@@ -7,6 +7,6 @@ class Potentiometer {
         int getValue();
 
     private:
-        const int potentiometerPin = 27;
+        const int potentiometerPin = 34;
         int value;
 };
