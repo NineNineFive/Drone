@@ -21,10 +21,10 @@ void Joystick::loop(){
     }
 
     int rawValueX= analogRead(xPin);
-    xVal = map(rawValueX,0, 2047, 0,500);
+    xVal = map(rawValueX,0, 4095, 20,500);
 
     int rawValueY= analogRead(yPin);
-    yVal = map(rawValueY,0, 2047, 0,500); 
+    yVal = map(rawValueY,0, 4095, 20,500); 
 }
 
 void Joystick::print(){

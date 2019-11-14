@@ -7,7 +7,7 @@
 #include <Controller/Drone.h>
 #include <Controller/Timer.h>
 
-Timer timer(1000);
+Timer timer(500);
 Potentiometer potentiometer;
 Joystick joystick;
 Button button;
@@ -20,17 +20,16 @@ void Controller::setup(){
     potentiometer.setup(); 
     joystick.setup();
     button.setup();    
-    //drone.connect();
+    drone.connect();
 }
 
 void Controller::loop(){
     potentiometer.loop();
     joystick.loop();
     button.loop();
-    timer.check();
-    joystick.print(); 
 
     if(timer.check()){
+        joystick.print(); 
         Serial.println(button.getToggle());
         if(button.getToggle()==true&&drone.flying==false){
             drone.flying = true;
@@ -55,37 +54,37 @@ void Controller::loop(){
             drone.sendCommand(descend);
         }
 
-        Serial.println(joystick.getXPosition());
-        if(joystick.getXPosition() < 200){
+        //Serial.println(joystick.getXPosition());
+        if(joystick.getXPosition() < 150){
             String left = "left ";
-            left += 20;
+            left += 50;
             drone.sendCommand(left);
-        } else if(joystick.getXPosition() < 300){
+        } else if(joystick.getXPosition() > 350){
             String right = "right ";
-            right += 20;
+            right += 50;
             drone.sendCommand(right);
         }
 
-        Serial.println(joystick.getYPosition());
-        if(joystick.getYPosition() < 200){
+        //Serial.println(joystick.getYPosition());
+        if(joystick.getYPosition() > 350){
             String back = "back ";
-            back += 20;
+            back += 50;
             drone.sendCommand(back);
-        } else if(joystick.getYPosition() < 300){
+        } else if(joystick.getYPosition() < 150){
             String forward = "forward ";
-            forward += 20;
+            forward += 50;
             drone.sendCommand(forward);
         }
 
         Serial.println(button.getFlipButton());
         if(button.getFlipButton()==true){
-            Serial.println("pressed");
+            Serial.println("flipButton pressed");
             drone.sendCommand("flip b");   
         }
 
         Serial.println(joystick.getStopButton());
         if(joystick.getStopButton()==true){
-            Serial.println("pressed");
+            Serial.println("stopButton pressed");
             drone.sendCommand("stop");   
         }
     }

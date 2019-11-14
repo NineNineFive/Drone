@@ -15,6 +15,7 @@ Drone::Drone(String ssid, String password){
 }
 
 void Drone::connect(){
+    if(on){
     Serial.println("drone begin");
     //Serial.begin(9600);
     WiFi.mode(WIFI_STA);
@@ -25,6 +26,7 @@ void Drone::connect(){
             delay(1000);
         }
     }
+    
     if(udp.listen(udpPort)) {
         this->myIp = WiFi.localIP().toString();
         Serial.print("UDP Listening on IP: ");
@@ -46,12 +48,15 @@ void Drone::connect(){
         );
         this->sendCommand("command");
     }
+    }
 }
 
 void Drone::sendCommand(String command) {
+    if(on){
     udpSender.beginPacket(this->droneIp.c_str(), udpPort);
     udpSender.printf(command.c_str());
     udpSender.endPacket();    
+    }
 }
 
 void Drone::setIp(String ip) {

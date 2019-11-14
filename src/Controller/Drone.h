@@ -26,4 +26,5 @@ class Drone {
         String ssid;
         String password;
         String droneIp = "192.168.10.1";
+        boolean on = true;
 };
