@@ -14,8 +14,7 @@ Drone::Drone(String ssid, String password){
     this->password = password; 
 }
 
-void Drone::connect()
-{
+void Drone::connect(){
     Serial.println("drone begin");
     //Serial.begin(9600);
     WiFi.mode(WIFI_STA);
@@ -59,22 +58,9 @@ void Drone::setIp(String ip) {
     this->droneIp = ip;
 }
         
-void Drone::commandResponse(String response)
-{
+void Drone::commandResponse(String response) {
     Serial.print("got following response: ");
     Serial.println(response.c_str());
     Serial.print("message length: ");
     Serial.println(response.length());
-}
-
-void Drone::ButtonPressed(){
-    if (flying == false) {
-        this->flying = true;
-        Serial.println("takeoff");
-        this->sendCommand("takeoff");
-    } else {
-        Serial.println("land");
-        this->sendCommand("land");
-        this->flying = false;
-    }
 }

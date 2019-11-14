@@ -25,7 +25,5 @@ class Drone {
         String response;
         String ssid;
         String password;
-        String droneIp = "192.168.10.1"; // drone
-        //String droneIp = "192.168.1.111"; // pc
-        
+        String droneIp = "192.168.10.1";
 };

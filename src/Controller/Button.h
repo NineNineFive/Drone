@@ -6,12 +6,13 @@ class Button{
         void setup();
         void loop();
         void print();
-        String getValue();
         boolean getToggle();
+        boolean getFlipButton();
 
     private:
-        const int buttonPin = 23;
-        String value;
+        const int button1Pin = 23;
+        const int button2Pin = 8;
         boolean toggle;
         boolean lastToggle;
+        boolean flipButton;
 };

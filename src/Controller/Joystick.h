@@ -6,16 +6,17 @@ class Joystick{
         void setup();
         void loop();
         void print();
-        int getX();
-        int getY();
-        int getSW();
+        int getXPosition();
+        int getYPosition();
+        boolean getStopButton();
         
     private:
-        const int xPin = 15;
-        const int yPin = 4;
-        const int swPin = 5;
+        const int xPin = 34;
+        const int yPin = 35;
+        const int swPin = 15;
         int xVal;
         int yVal;
-        int swVal;
+        int deadZone = 200;
+        boolean swVal;
         String joystickValue;
 };

@@ -4,9 +4,9 @@ class Potentiometer {
         void setup();
         void loop();
         void print();
-        int getValue();
+        int getHeightValue();
 
     private:
-        const int potentiometerPin = 34;
-        int value;
+        const int potentiometerPin = 6;
+        int potValue;
 };

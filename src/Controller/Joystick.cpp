@@ -12,24 +12,33 @@ void Joystick::setup(){
 }
 
 void Joystick::loop(){
-    xVal = analogRead(xPin);
-    yVal = analogRead(yPin);
-    swVal = digitalRead(swPin);
     joystickValue = (String)"x:" + xVal + " y:" + yVal + " sw:" + swVal;
+
+    if(digitalRead(swPin)==LOW){
+        swVal = true;
+    } else {
+        swVal = false;
+    }
+
+    int rawValueX= analogRead(xPin);
+    xVal = map(rawValueX,0, 2047, 0,500);
+
+    int rawValueY= analogRead(yPin);
+    yVal = map(rawValueY,0, 2047, 0,500); 
 }
 
 void Joystick::print(){
     Serial.println(joystickValue);
 }
 
-int Joystick::getX(){
+int Joystick::getXPosition(){
     return xVal;
 }
 
-int Joystick::getY(){
+int Joystick::getYPosition(){
     return yVal;
 }
 
-int Joystick::getSW(){
+boolean Joystick::getStopButton(){
     return swVal;
 }
