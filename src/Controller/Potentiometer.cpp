@@ -10,11 +10,13 @@ void Potentiometer::setup(){
 
 void Potentiometer::loop(){
     int rawValue= analogRead(potentiometerPin);
-    potValue = map(rawValue,0,4095, 20,300); 
+    potValue = map(rawValue,0,4095, 0,300); 
 }
 
-void Potentiometer::print(){
-    Serial.println(potValue);
+String Potentiometer::print(){
+    String text = "potVal: ";
+    text += potValue;
+    return text;
 }
 
 int Potentiometer::getHeightValue(){

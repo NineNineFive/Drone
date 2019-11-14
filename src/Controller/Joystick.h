@@ -5,7 +5,7 @@ class Joystick{
         Joystick();
         void setup();
         void loop();
-        void print();
+        String print();
         int getXPosition();
         int getYPosition();
         boolean getStopButton();

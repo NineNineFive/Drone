@@ -3,7 +3,7 @@ class Potentiometer {
         Potentiometer();
         void setup();
         void loop();
-        void print();
+        String print();
         int getHeightValue();
 
     private:

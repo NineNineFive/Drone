@@ -29,7 +29,10 @@ void Controller::loop(){
     button.loop();
 
     if(timer.check()){
-        joystick.print(); 
+        drone.sendCommand("battery?");
+            
+
+        //TURN DRONE ON AND OFF BUTTON
         Serial.println(button.getToggle());
         if(button.getToggle()==true&&drone.flying==false){
             drone.flying = true;
@@ -41,20 +44,20 @@ void Controller::loop(){
             drone.sendCommand("land");
         }
 
-        Serial.println(potentiometer.getHeightValue());
-        if(potentiometer.getHeightValue() > 200){
+        //CONTROL DRONE HEIGHT
+        Serial.println(potentiometer.print());
+        if(potentiometer.getHeightValue() > 250){
             String ascend = "up ";
-            ascend += 20;
+            ascend += 50;
             drone.sendCommand(ascend);
-            Serial.println(ascend);
-        } else if(potentiometer.getHeightValue() < 100){
+        } else if(potentiometer.getHeightValue() < 50){
             String descend = "down ";
-            descend += 20;
-            Serial.println(descend);
+            descend += 50;
             drone.sendCommand(descend);
         }
 
-        //Serial.println(joystick.getXPosition());
+        //MOVE DRONE IN X AXIS, LEFT AND RIGHT
+        Serial.println(joystick.print());
         if(joystick.getXPosition() < 150){
             String left = "left ";
             left += 50;
@@ -65,7 +68,18 @@ void Controller::loop(){
             drone.sendCommand(right);
         }
 
-        //Serial.println(joystick.getYPosition());
+        //TURBO SPEED DRONE IN X AXIS, LEFT AND RIGHT
+        if(joystick.getXPosition() < 10){
+            String turboLeft = "speed ";
+            turboLeft += 80;
+            drone.sendCommand(turboLeft);
+        } else if(joystick.getXPosition() > 490){
+            String turboRight = "speed ";
+            turboRight += 80;
+            drone.sendCommand(turboRight);
+        }
+
+        //MOVE DRONE IN Y AXIS, LEFT AND RIGHT
         if(joystick.getYPosition() > 350){
             String back = "back ";
             back += 50;
@@ -76,16 +90,27 @@ void Controller::loop(){
             drone.sendCommand(forward);
         }
 
-        Serial.println(button.getFlipButton());
-        if(button.getFlipButton()==true){
-            Serial.println("flipButton pressed");
-            drone.sendCommand("flip b");   
+        //TURBO SPEED DRONE IN Y AXIS, LEFT AND RIGHT
+        if(joystick.getYPosition() > 490){
+            String turboBack = "speed ";
+            turboBack += 80;
+            drone.sendCommand(turboBack);
+        } else if(joystick.getYPosition() < 10){
+            String turboForward = "speed ";
+            turboForward += 80;
+            drone.sendCommand(turboForward);
         }
 
-        Serial.println(joystick.getStopButton());
+         //EMERGENCY STOP BUTTON
         if(joystick.getStopButton()==true){
-            Serial.println("stopButton pressed");
             drone.sendCommand("stop");   
+        }
+
+        //FLIPBUTTON
+        Serial.println(button.getFlipButton());
+        if(button.getFlipButton()==true){
+            Serial.print(" flipButton pressed");
+            drone.sendCommand("flip b");   
         }
     }
 }

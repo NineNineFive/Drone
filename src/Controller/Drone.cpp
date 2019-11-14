@@ -17,7 +17,6 @@ Drone::Drone(String ssid, String password){
 void Drone::connect(){
     if(on){
     Serial.println("drone begin");
-    //Serial.begin(9600);
     WiFi.mode(WIFI_STA);
     WiFi.begin(this->ssid.c_str(), this->password.c_str());
     if (WiFi.waitForConnectResult() != WL_CONNECTED) {
