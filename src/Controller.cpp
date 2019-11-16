@@ -28,20 +28,22 @@ void Controller::loop(){
     joystick.loop();
     button.loop();
 
+	//TURN DRONE ON AND OFF BUTTON
+	Serial.println(button.getToggle());
+	if(button.getToggle()==true&&drone.flying==false){
+		drone.flying = true;
+		Serial.println("true");
+		drone.sendCommand("takeoff");
+	} else if(button.getToggle()==false&&drone.flying==true) {
+		drone.flying = false;
+		Serial.println("false");
+		drone.sendCommand("land");
+	}
+
     if(timer.check()){
         drone.sendCommand("battery?");
                      
-        //TURN DRONE ON AND OFF BUTTON
-        Serial.println(button.getToggle());
-        if(button.getToggle()==true&&drone.flying==false){
-            drone.flying = true;
-            Serial.println("true");
-            drone.sendCommand("takeoff");
-        } else if(button.getToggle()==false&&drone.flying==true) {
-            drone.flying = false;
-            Serial.println("false");
-            drone.sendCommand("land");
-        }
+        
 
         //CONTROL DRONE HEIGHT
         Serial.println(potentiometer.print());
