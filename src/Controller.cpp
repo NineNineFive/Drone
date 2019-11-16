@@ -30,8 +30,7 @@ void Controller::loop(){
 
     if(timer.check()){
         drone.sendCommand("battery?");
-            
-
+                     
         //TURN DRONE ON AND OFF BUTTON
         Serial.println(button.getToggle());
         if(button.getToggle()==true&&drone.flying==false){

@@ -11,7 +11,7 @@ class Button{
 
     private:
         const int button1Pin = 23;
-        const int button2Pin = 33;
+        const int button2Pin = 15;
         boolean toggle;
         boolean lastToggle;
         boolean flipButton;

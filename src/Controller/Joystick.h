@@ -11,9 +11,9 @@ class Joystick{
         boolean getStopButton();
         
     private:
-        const int xPin = 34;
-        const int yPin = 35;
-        const int swPin = 15;
+        const int xPin = 35;
+        const int yPin = 34;
+        const int swPin = 32;
         int xVal;
         int yVal;
         int deadZone = 200;
