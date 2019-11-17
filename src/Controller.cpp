@@ -64,7 +64,7 @@ void Controller::loop(){
             drone.sendCommand(right);
         }
 
-        //MOVE DRONE IN Y AXIS, LEFT AND RIGHT
+        //MOVE DRONE IN Y AXIS, BACK AND FORWARD
         if(joystick.getYPosition() > 350){
             String back = "back ";
             back += 20;
