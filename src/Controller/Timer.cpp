@@ -6,7 +6,6 @@ long timeSinceStart;
 long frame = 0;
 long iteratorTime;
 
-
 Timer::Timer(long waitingTime){
     this->waitingTime = waitingTime;
 }

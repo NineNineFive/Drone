@@ -6,27 +6,27 @@ Button::Button(){
 }
 
 void Button::setup(){
-    pinMode(button1Pin,INPUT);
-    pinMode(button2Pin, INPUT); 
-    toggle = !digitalRead(button1Pin);
-    lastToggle = !digitalRead(button1Pin);
-    flipButton = !digitalRead(button2Pin);
+    pinMode(toogleButtonPin,INPUT);
+    pinMode(flipButtonPin, INPUT); 
+    toggle = !digitalRead(toogleButtonPin);
+    lastToggle = !digitalRead(toogleButtonPin);
+    flipButton = !digitalRead(flipButtonPin);
 }
 
 void Button::loop(){
     if(toggle==lastToggle){
-        if(digitalRead(button1Pin)==LOW){
+        if(digitalRead(toogleButtonPin)==LOW){
             toggle = !toggle; // On Press
         }
     } else if(toggle != lastToggle){
-        if(digitalRead(button1Pin)==LOW){
+        if(digitalRead(toogleButtonPin)==LOW){
             lastToggle = !toggle; // set last toggle to the opposite of toggle (we hold finger on it)
         } else {
             lastToggle = toggle; // (we take finger away)
         }
     }
 
-    if(digitalRead(button2Pin)==LOW){
+    if(digitalRead(flipButtonPin)==LOW){
         flipButton = true;
     } else {
         flipButton = false;
